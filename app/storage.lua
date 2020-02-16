@@ -1,4 +1,4 @@
-local log = require("log")
+local log = require('log')
 
 local storage = {
     init = function(self, conf)
@@ -18,6 +18,7 @@ local storage = {
             end
         )
         self.space = box.space.storage
+        log.info('DB started')
     end,
 
     find = function(self, key)
@@ -27,19 +28,23 @@ local storage = {
 
     get = function(self, key)
         local obj = self.space:select({key})
+        log.info('Key "%s" selected', key)
         return obj[1][2]
     end,
 
     post = function(self, key, value)
         self.space:insert({key, value})
+        log.info('Key "%s" inserted', key)
     end,
 
     put = function(self, key, value)
         self.space:replace({key, value})
+        log.info('Value with key "%s" updated', key)
     end,
 
     delete = function(self, key, value)
         self.space:delete({key})
+        log.info('Key "%s" deleted', key)
     end,
 }
 

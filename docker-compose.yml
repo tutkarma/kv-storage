@@ -6,5 +6,24 @@ services:
       context: .
     ports:
       - "8080:8080"
+    command: tarantool run.lua
+    working_dir: /opt/tarantool/app
+    networks:
+      - kv-network
 
-    command: tarantool /opt/tarantool/run.lua
+  tests:
+    build:
+      context: .
+
+    command: tarantool test.lua
+    environment:
+      - APP_HOST=http://app:8080
+    networks:
+      - kv-network
+    depends_on:
+      - app
+
+    working_dir: /opt/tarantool/tests
+
+networks:
+  kv-network:

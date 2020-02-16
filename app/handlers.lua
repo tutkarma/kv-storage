@@ -7,6 +7,7 @@ local http_router = require('http.router')
 local function bad_request(req, code, msg)
     local resp = req:render({json = {error = msg}})
     resp.status = code
+    log.info('Request failed: %s', msg)
     return resp
 end
 
@@ -43,7 +44,7 @@ local routers = {
             end
 
             self.storage:post(key, value)
-            return { status = 201 }
+            return { status = 201, body = 'OK' }
         end
     end,
 
@@ -62,7 +63,7 @@ local routers = {
             end
 
             self.storage:put(key, value)
-            return { status = 200 }
+            return { status = 200, body = 'OK' }
         end
     end,
 
@@ -75,7 +76,7 @@ local routers = {
             end
 
             self.storage:delete(key)
-            return { status = 200 }
+            return { status = 200, body = 'OK' }
         end
     end,
 

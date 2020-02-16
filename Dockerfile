@@ -1,4 +1,4 @@
-FROM tarantool/tarantool:2.2.1
+FROM tarantool/tarantool:2.2.1 
 
 RUN set -x \
     && apk add --no-cache --virtual .build-deps \
@@ -12,4 +12,4 @@ RUN set -x \
     && : "---------- remove build deps ----------" \
     && apk del .build-deps
 
-COPY app/ /opt/tarantool
+COPY . /opt/tarantool
