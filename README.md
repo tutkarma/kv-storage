@@ -1,5 +1,19 @@
 ### Simple kv-storage
 
-Just for fun.
+API
 
-Когда-нибудь я его напишу.
+* GET       /kv/<id>
+* POST      /kv
+    ```json
+    {
+        "key": "test",
+        "value": {SOME ARBITRARY JSON}
+    }
+    ```
+* PUT       /kv/<id>
+    ```json
+    {
+        "value": {SOME ARBITRARY JSON}
+    }
+    ```
+* DELETE    /kv/<id>
