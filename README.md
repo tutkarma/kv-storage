@@ -2,18 +2,18 @@
 
 API
 
-* GET       /kv/<id>
+* GET       /kv/{id}
 * POST      /kv
-    ```json
+    ```
     {
         "key": "test",
         "value": {SOME ARBITRARY JSON}
     }
     ```
-* PUT       /kv/<id>
-    ```json
+* PUT       /kv/{id}
+    ```
     {
         "value": {SOME ARBITRARY JSON}
     }
     ```
-* DELETE    /kv/<id>
+* DELETE    /kv/{id}
